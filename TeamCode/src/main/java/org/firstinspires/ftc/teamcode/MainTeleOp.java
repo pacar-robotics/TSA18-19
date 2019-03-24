@@ -19,11 +19,13 @@ public class MainTeleOp extends LinearOpMode {
 
     private void initialize() {
         robot = new Robot(hardwareMap);
+
+        gamepad1.setJoystickDeadzone(.1f);
     }
 
     private void driveWheels() {
-        double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
-        double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+        double r = Math.hypot(gamepad1.left_stick_x, -gamepad1.left_stick_y);
+        double robotAngle = Math.atan2(-gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
         double rightX = gamepad1.right_stick_x;
         final double v1 = r * Math.cos(robotAngle) + rightX;
         final double v2 = r * Math.sin(robotAngle) - rightX;
