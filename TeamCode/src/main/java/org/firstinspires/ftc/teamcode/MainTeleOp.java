@@ -12,15 +12,24 @@ public class MainTeleOp extends LinearOpMode {
         initialize();
         waitForStart();
 
+        telemetry.addData("Status", "Running");
+        telemetry.update();
+
         while (opModeIsActive()) {
             driveWheels();
         }
     }
 
     private void initialize() {
+        telemetry.addData("Status", "Initializing...");
+        telemetry.update();
+
         robot = new Robot(hardwareMap);
 
         gamepad1.setJoystickDeadzone(.1f);
+
+        telemetry.addData("Status", "Ready");
+        telemetry.update();
     }
 
     private void driveWheels() {
