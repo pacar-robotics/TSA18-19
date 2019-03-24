@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp
 public class MainTeleOp extends LinearOpMode {
-    Robot robot;
+    private Robot robot;
 
     @Override
     public void runOpMode() throws InterruptedException {
