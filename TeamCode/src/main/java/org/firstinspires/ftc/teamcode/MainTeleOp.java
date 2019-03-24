@@ -36,14 +36,10 @@ public class MainTeleOp extends LinearOpMode {
         double r = Math.hypot(gamepad1.left_stick_x, -gamepad1.left_stick_y);
         double robotAngle = Math.atan2(-gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
         double rightX = gamepad1.right_stick_x;
-        final double v1 = r * Math.cos(robotAngle) + rightX;
-        final double v2 = r * Math.sin(robotAngle) - rightX;
-        final double v3 = r * Math.sin(robotAngle) + rightX;
-        final double v4 = r * Math.cos(robotAngle) - rightX;
 
-        robot.wheelTopLeft.setPower(v1);
-        robot.wheelTopRight.setPower(v2);
-        robot.wheelBotLeft.setPower(v3);
-        robot.wheelBotRight.setPower(v4);
+        robot.wheelTopLeft.setPower(r * Math.cos(robotAngle) + rightX);
+        robot.wheelTopRight.setPower(r * Math.sin(robotAngle) - rightX);
+        robot.wheelBotLeft.setPower(r * Math.sin(robotAngle) + rightX);
+        robot.wheelBotRight.setPower(r * Math.cos(robotAngle) - rightX);
     }
 }
