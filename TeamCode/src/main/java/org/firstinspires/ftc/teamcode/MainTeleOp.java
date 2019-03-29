@@ -40,6 +40,25 @@ public class MainTeleOp extends LinearOpMode {
         double robotAngle = Math.atan2(-gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
         double rightX = gamepad1.right_stick_x;
 
+        final float TOP_LEFT = 1.570796f;
+        final float TOP = 0.785398f;
+        final float TOP_RIGHT = 0;
+        final float RIGHT = -0.785398f;
+        final float BOT_RIGHT = -1.570796f;
+        final float BOT = -2.35619f;
+        final float BOT_LEFT = -3.1415926f;
+        final float LEFT = 2.35619f;
+
+        if (robotAngle < TOP_LEFT && robotAngle > TOP_RIGHT) {
+            robotAngle = TOP;
+        } else if (robotAngle < TOP_RIGHT && robotAngle > BOT_RIGHT) {
+            robotAngle = RIGHT;
+        } else if (robotAngle < BOT_RIGHT && robotAngle > BOT_LEFT) {
+            robotAngle = BOT;
+        } else {
+            robotAngle = LEFT;
+        }
+
         robot.wheelTopLeft.setPower((r * Math.cos(robotAngle) + rightX) * speed);
         robot.wheelTopRight.setPower((r * Math.sin(robotAngle) - rightX) * speed);
         robot.wheelBotLeft.setPower((r * Math.sin(robotAngle) + rightX) * speed);
