@@ -36,6 +36,18 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     private void driveWheels() {
+        driveFourWheel();
+    }
+
+    private void driveFourWheel() {
+        robot.wheelTopLeft.setPower(gamepad1.left_stick_y);
+        robot.wheelBotLeft.setPower(gamepad1.left_stick_y);
+
+        robot.wheelTopRight.setPower(gamepad1.right_stick_y);
+        robot.wheelBotRight.setPower(gamepad1.right_stick_y);
+    }
+
+    private void driveMecanum() {
         double r = Math.hypot(gamepad1.left_stick_x, -gamepad1.left_stick_y);
         double robotAngle = Math.atan2(-gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
         double rightX = gamepad1.right_stick_x;
