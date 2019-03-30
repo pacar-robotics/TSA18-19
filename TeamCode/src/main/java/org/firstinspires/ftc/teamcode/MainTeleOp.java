@@ -42,11 +42,11 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     private void driveFourWheel() {
-        robot.wheelTopLeft.setPower(gamepad1.left_stick_y);
-        robot.wheelBotLeft.setPower(gamepad1.left_stick_y);
+        robot.wheelTopLeft.setPower(-gamepad1.left_stick_y);
+        robot.wheelBotLeft.setPower(-gamepad1.left_stick_y);
 
-        robot.wheelTopRight.setPower(gamepad1.right_stick_y);
-        robot.wheelBotRight.setPower(gamepad1.right_stick_y);
+        robot.wheelTopRight.setPower(-gamepad1.right_stick_y);
+        robot.wheelBotRight.setPower(-gamepad1.right_stick_y);
     }
 
     private void driveMecanum() {
