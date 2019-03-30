@@ -38,14 +38,15 @@ public class MainTeleOp extends LinearOpMode {
 
     private void driveWheels() {
         driveFourWheel();
+        changeSpeed();
     }
 
     private void driveFourWheel() {
-        robot.wheelTopLeft.setPower(-gamepad1.left_stick_y);
-        robot.wheelBotLeft.setPower(-gamepad1.left_stick_y);
+        robot.wheelTopLeft.setPower(-gamepad1.left_stick_y * speed);
+        robot.wheelBotLeft.setPower(-gamepad1.left_stick_y * speed);
 
-        robot.wheelTopRight.setPower(-gamepad1.right_stick_y);
-        robot.wheelBotRight.setPower(-gamepad1.right_stick_y);
+        robot.wheelTopRight.setPower(-gamepad1.right_stick_y * speed);
+        robot.wheelBotRight.setPower(-gamepad1.right_stick_y * speed);
     }
 
     private void driveMecanum() {
@@ -76,5 +77,15 @@ public class MainTeleOp extends LinearOpMode {
         robot.wheelTopRight.setPower((r * Math.sin(robotAngle) - rightX) * speed);
         robot.wheelBotLeft.setPower((r * Math.sin(robotAngle) + rightX) * speed);
         robot.wheelBotRight.setPower((r * Math.cos(robotAngle) - rightX) * speed);
+    }
+
+    private void changeSpeed() {
+        if (gamepad1.dpad_up) {
+            speed = 1;
+        } else if (gamepad1.dpad_left || gamepad1.dpad_right) {
+            speed = .5f;
+        } else if (gamepad1.dpad_down) {
+            speed = .25f;
+        }
     }
 }
