@@ -2,11 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
 public class MainTeleOp extends LinearOpMode {
     private Robot robot;
     private float speed;
+
+    private ElapsedTime servoToggleDelay;
 
     @SuppressWarnings("RedundantThrows")
     @Override
@@ -19,6 +22,9 @@ public class MainTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             driveWheels();
+            toggleGasLightServo();
+            toggleLeftFlipper();
+            toggleRightFlipper();
         }
     }
 
@@ -29,13 +35,14 @@ public class MainTeleOp extends LinearOpMode {
         robot = new Robot(hardwareMap);
 
         gamepad1.setJoystickDeadzone(.1f);
-
         speed = .25f;
+        servoToggleDelay = new ElapsedTime();
 
         telemetry.addData("Status", "Ready");
         telemetry.update();
     }
 
+    // ************* WHEEL METHODS ************* //
     private void driveWheels() {
         driveFourWheel();
         changeSpeed();
@@ -86,6 +93,41 @@ public class MainTeleOp extends LinearOpMode {
             speed = .5f;
         } else if (gamepad1.dpad_down) {
             speed = .25f;
+        }
+    }
+
+
+    // ************* SERVO METHODS ************* //
+    private void toggleGasLightServo() {
+        if (gamepad1.y && servoToggleDelay.seconds() > .25f) {
+            if (robot.servoGasLight.getPosition() == Robot.SERVO_POS_GAS_LIGHT_RETRACT) {
+                robot.servoGasLight.setPosition(Robot.SERVO_POS_GAS_LIGHT_EXTEND);
+            } else {
+                robot.servoGasLight.setPosition(Robot.SERVO_POS_GAS_LIGHT_RETRACT);
+            }
+            servoToggleDelay.reset();
+        }
+    }
+
+    private void toggleLeftFlipper() {
+        if (gamepad1.a && servoToggleDelay.seconds() > .25f) {
+            if (robot.servoLeftFlipper.getPosition() == Robot.SERVO_POS_LEFT_FLIPPER_RETRACT) {
+                robot.servoLeftFlipper.setPosition(Robot.SERVO_POS_LEFT_FLIPPER_EXTEND);
+            } else {
+                robot.servoLeftFlipper.setPosition(Robot.SERVO_POS_LEFT_FLIPPER_RETRACT);
+            }
+            servoToggleDelay.reset();
+        }
+    }
+
+    private void toggleRightFlipper() {
+        if (gamepad1.b && servoToggleDelay.seconds() > .25f) {
+            if (robot.servoRightFlipper.getPosition() == Robot.SERVO_POS_RIGHT_FLIPPER_RETRACT) {
+                robot.servoRightFlipper.setPosition(Robot.SERVO_POS_RIGHT_FLIPPER_EXTEND);
+            } else {
+                robot.servoRightFlipper.setPosition(Robot.SERVO_POS_RIGHT_FLIPPER_RETRACT);
+            }
+            servoToggleDelay.reset();
         }
     }
 }
