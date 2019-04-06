@@ -42,7 +42,7 @@ public class Robot {
     final static float SERVO_POS_GAS_LIGHT_EXTEND = .4f;
     final static float SERVO_POS_GAS_LIGHT_RETRACT = 1;
 
-    final static float SERVO_POS_LEFT_FLIPPER_EXTEND = .96f;
+    final static float SERVO_POS_LEFT_FLIPPER_EXTEND = 1;
     final static float SERVO_POS_LEFT_FLIPPER_RETRACT = 0;
 
     final static float SERVO_POS_RIGHT_FLIPPER_EXTEND = .93f;
