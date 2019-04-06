@@ -15,7 +15,7 @@ public class TestServo extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            if (gamepad1.dpad_up && elapsedTime.seconds() > .5f) {
+            if (gamepad1.dpad_up && elapsedTime.seconds() > .25f) {
                 leftFlipper.setPosition(leftFlipper.getPosition() + .01f);
                 elapsedTime.reset();
             } else if (gamepad1.dpad_down && elapsedTime.seconds() > .5f) {
